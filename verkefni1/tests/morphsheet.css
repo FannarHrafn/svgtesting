@@ -1,0 +1,9 @@
+body {
+  padding: 30px;
+}
+/*virkar ekki þar sem svg sem ég er að vinna með er bæði með marga paths
+og hefur ekki jafns mörg data points sem þarf fyrir shape morphing í chrome víst
+*/
+.morpher:hover object {
+	data:wingsdown.svg ;
+}

@@ -1,0 +1,62 @@
+<html>
+<head>
+	<title>svgtest</title>
+	<link rel="stylesheet" type="text/css" href="javascriptcss.css">
+</head>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<body id="sky">
+	<!--
+	onmouserover parturinn var fyrir frumgerðina, fjarlægi ekki incase
+	að þú viljir prófa það snöggvast ekki pæla í þessum errors frá þessu
+	-->
+	<a href="#0" id="container" class="icon-expand-link" style="top: 150px; left: 5px;" onmouseover="move_right(this, 50); ">
+		<object class="expand" type="image/svg+xml" data="wingsdown.svg">Your browser does not support SVGs</object>
+		<!--seinna object óþarfi nema maður vilji prófa frumgerð-->
+		<object class="contract" type="image/svg+xml" data="wingsup.svg">Your browser does not support SVGs</object>
+	</a>
+<script type="text/javascript">
+	/*
+
+	Frumgerð sem var að fuglin flaug bara frá vinstri hlið yfir til hægri
+	uncomment þetta og comment út hitt function ef þú vilt prófa það
+
+	function move_right(obj, value) {
+    var x = document.getElementById("container");
+    x.style.left = x.offsetLeft + value + 'px';
+    if(x.style.left=="1105px"){
+    	x.style.left=5+"px";
+    }
+    console.log(x.style.left);
+}
+*/
+/*
+næ í jquery efst fyrir þetta sem lætur fuglinn lýta eins og hann sé að fljúga á eftir cursor og hættir að flappa þegar hann er stopp undir cursor svo hann lýti út eins og hann sé að svífa
+*/
+//lætur hann elta cursor
+$(document).mousemove(function(e){
+    $("#container").stop().animate({left:e.pageX, top:e.pageY});
+});
+//þegar cursor er ekki á fugl þá skiptir hann milli svg
+$(document).ready(function(){
+    $('#container').bind('mouseleave', function() {
+    var self = $(this);
+    this.iid = setInterval(function() {
+    	//skiptir um svg á 425 millisekundna fresti
+	    if ( $('#sky object').attr('data') == "wingsdown.svg" ) {
+	        $('#sky object').attr('data', "wingsup.svg");
+	    } else {
+	        $('#sky object').attr('data', "wingsdown.svg");
+	    };
+    }, 425);
+   //hættir að fljúga og byrjar að svífa þegar hann er undir cursor
+}).bind('mouseenter', function(){
+    this.iid && clearInterval(this.iid);
+});
+
+});
+</script>
+</body>
+</html>

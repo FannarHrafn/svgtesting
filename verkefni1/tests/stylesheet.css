@@ -1,0 +1,16 @@
+body {
+	padding-top: 10em;
+	width: 100em;
+  	margin: auto;
+  	background-image: url(https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/4BrdbiSFlik14dmb5/time-lapse-moving-cloud-on-blue-sky-background_4s9ilq19e__F0000.png)
+}
+
+.icon-expand-link .contract {
+  display: none;
+}
+.icon-expand-link:hover .expand {
+  display: none;
+}
+.icon-expand-link:hover .contract {
+  display: block;
+}
